@@ -1,0 +1,10 @@
+<% provide(:title, 'すべての問い合わせ') %>
+<h1>すべての問い合わせ一覧</h1>
+
+<%= will_paginate %>
+
+<ul class="contacts">
+  <%= render @contacts %>
+</ul>
+
+<%= will_paginate %>

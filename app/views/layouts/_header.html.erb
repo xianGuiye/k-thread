@@ -1,0 +1,32 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "K-THREAD", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "ホーム", root_path %></li>
+        <li><%= link_to "ヘルプ", help_path %></li>
+        <% if logged_in? %>
+          <li><%= link_to "ユーザ一覧", users_path %></li>
+          <li><%= link_to "掲示板作成", new_topic_path %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              アカウント <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "投稿一覧", current_user %></li>
+              <li><%= link_to "ユーザ編集", edit_user_path(current_user) %></li>
+              <li><%= link_to "退会する", current_user, method: :delete,
+                                       data: { confirm: "本当に退会しますか?" } %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "ログアウト", logout_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "ログイン", login_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

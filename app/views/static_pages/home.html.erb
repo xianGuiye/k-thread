@@ -1,0 +1,24 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>掲示板一覧</h3>
+      <%= render 'shared/thread' %>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <h1>ようこそ</h1>
+
+    <h2>
+      2ちゃんねる風掲示板です．まずはサインアップして下さい．
+    </h2>
+
+    <%= link_to "サインアップする", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+
+<% end %>

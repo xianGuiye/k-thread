@@ -1,0 +1,14 @@
+<% provide(:title, "お問い合わせ") %>
+<% provide(:button_text, "送信する") %>
+<h1>お問い合わせフォーム</h1>
+<%= form_for @contact do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :件名 %>
+  <%= f.text_field :title, class: 'form-control' %>
+
+  <%= f.label :内容 %>
+  <%= f.text_area :content, class: 'form-control', :size => "10x10"%>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

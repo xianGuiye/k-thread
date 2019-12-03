@@ -1,0 +1,11 @@
+<%= form_for(@topic) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :タイトル %>
+  <%= f.text_field :title, class: 'form-control' %>
+
+  <%= f.label :カテゴリー %>
+  <%= f.text_field :category, class: 'form-control' %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

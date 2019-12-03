@@ -1,0 +1,10 @@
+<% provide(:title, 'すべてのユーザー') %>
+<h1>すべてのユーザ一覧</h1>
+
+<%= will_paginate @users, previous_label: '&#8592; &nbsp;前のページ', next_label: '次のページ &#8594;', inner_window: 1, outer_window: 0%>
+
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= will_paginate @users, previous_label: '&#8592; &nbsp;前のページ', next_label: '次のページ &#8594;', inner_window: 1, outer_window: 0%>

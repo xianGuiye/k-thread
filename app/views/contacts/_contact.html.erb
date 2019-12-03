@@ -1,0 +1,13 @@
+<li id="contact-<%= @contacts.count - @contacts.index(contact) %>">
+  <span class="user">No.<%= @contacts.count - @contacts.index(contact) %>  <%= contact.title %></span>
+  <span class="content">
+  <pre style="white-space:pre-wrap;"><%= contact.content %></pre>
+  </span>
+    <span class="timestamp" style="text-align:right">
+    <% if current_user.admin? %>
+      <%= link_to "削除する", contact, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+    <%= time_ago_in_words(contact.created_at) %>前
+  </span>
+</li>

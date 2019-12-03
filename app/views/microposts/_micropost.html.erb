@@ -1,0 +1,28 @@
+<li id="micropost-<%= @microposts.count - @microposts.index(micropost) %>">
+  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+  <% if @page.nil? %>
+    <% num = @microposts.count - @microposts.index(micropost) %>
+  <% else %>
+    <% num = @microposts.count - @microposts.index(micropost) - (@page.to_i - 1) * 30 %>
+  <% end %>
+  <span class="user">No.<%= num %>  <%= link_to micropost.user.name, micropost.user %> <%= micropost.topic.title %></span>
+  <span class="content">
+    <% if micropost.reply.nil? %>
+      <pre style="white-space:pre-wrap;"><%= text_url_to_link(micropost.content).html_safe %></pre>
+    <% else %>
+      <pre style="white-space:pre-wrap;"><a href="#micropost-<%= micropost.reply %>"> >><%=micropost.reply %></a>
+      <%= text_url_to_link(micropost.content).html_safe %></pre>
+    <% end %>
+  </span>
+  <%= image_tag micropost.picture.url if micropost.picture? %>
+  <span class="timestamp" style="text-align:right">
+    <% if current_user.admin? %>
+      <%= link_to "削除する", micropost, method: :delete,
+                                       data: { confirm: "本当に削除しますか?" } %>
+    <% end %>
+    <% if !current_user?(micropost.user) & !@topic.nil? %>
+      <%= link_to "返信する", topic_path(@topic, params: {number: num, page: @page}), method: :post %>
+    <% end %>
+    <%= time_ago_in_words(micropost.created_at) %>前
+  </span>
+</li>

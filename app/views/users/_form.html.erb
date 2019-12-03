@@ -1,0 +1,20 @@
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :ニックネーム %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label :メールアドレス %>
+  <%= f.email_field :email, class: 'form-control' %>
+
+  <%= f.label :自己紹介 %>
+  <%= f.text_field :introduce, class: 'form-control' %>
+
+  <%= f.label :パスワード %>
+  <%= f.password_field :password, class: 'form-control' %>
+
+  <%= f.label :パスワード再確認 %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

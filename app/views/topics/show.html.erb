@@ -1,0 +1,51 @@
+<% provide(:title, @topic.title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>
+    <% if !@micropost.reply.nil? %>
+      <span style="text-align:left;"><%= ">>#{@micropost.reply}" %></span>
+    <% end %>
+    <section class="micropost_form">
+      <%= form_for(@micropost) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field">
+          <%= f.text_area :content, placeholder: "メッセージを入力してください．．．" %>
+        </div>
+        <%= f.hidden_field :topic_id, value: @topic.id %>
+        <%= f.hidden_field :reply, value: @micropost.reply %>
+        <%= f.submit "投稿する", class: "btn btn-primary" %>
+        <span class="picture">
+          <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
+        </span>
+      <% end %>
+      
+      <script type="text/javascript">
+        $('#micropost_picture').bind('change', function() {
+          var size_in_megabytes = this.files[0].size/1024/1024;
+          if (size_in_megabytes > 5) {
+            alert('上限ファイルサイズは5MBです．ファイルサイズを小さくして再試行してください．');
+          }
+        });
+      </script>
+      
+    </section>
+  </aside>
+  <div class="col-md-8">
+  <% if @microposts.any? %>
+    <h2><%= @topic.title %>
+    <% if current_user.admin? %>
+    <small><%= link_to "編集", edit_topic_path %></small>
+    <% end %></h2>
+    <h3>投稿 <%= @microposts.count %>　件</h3>
+    <ol class="microposts">
+      <%= render @microposts %>
+    </ol>
+    <%= will_paginate @microposts, previous_label: '&#8592; &nbsp;前のページ', next_label: '次のページ &#8594;',
+    inner_window: 1, outer_window: 0%>
+  <% else %>
+    <h3>投稿はまだありません</h3>
+  <% end %>
+</div>
+</div>
