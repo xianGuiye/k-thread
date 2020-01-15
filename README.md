@@ -1,24 +1,29 @@
-# README
+# k-thread
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+2ちゃんねる風簡易掲示板です。
 
-Things you may want to cover:
+URL →　https://k-thread.herokuapp.com/
 
-* Ruby version
+## Note
 
-* System dependencies
+- 概要
+  - 使用技術: Ruby on Rails(MySQL), Amazon S3(AWS)等
+  - デプロイ: Heroku
 
-* Configuration
+- プロトタイプのため，管理者認証情報を開示しています．
+  - ID: administrator@example.com
+  - PW: administrator
 
-* Database creation
+- できること
+  - スレッド（板）を立てて相互にメッセージの投稿が可能です．
+  - スレッドは画像の投稿も可能です．
+  - アカウントアイコンはGravatarと連携させているため，別にアカウント作成してください．
 
-* Database initialization
+## Copyright
 
-* How to run the test suite
+https://railstutorial.jp/(MITライセンス)
+を参考にしています．
 
-* Services (job queues, cache servers, search engines, etc.)
+## Author  
+xianGuiye
 
-* Deployment instructions
-
-* ...
